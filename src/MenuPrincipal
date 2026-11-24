@@ -1,1 +1,82 @@
 
+
+package com.mycompany.proyectoedaii;
+
+import javax.swing.*;
+import java.awt.*;
+
+public class MenuPrincipal extends JFrame {
+
+    public MenuPrincipal() {
+        setTitle("Menú Principal - EDA II");
+        setSize(800, 550);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+        setResizable(false);
+
+        JPanel panel = new JPanel();
+        panel.setBackground(new Color(18, 32, 55));
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+
+        JLabel titulo = new JLabel("MENÚ PRINCIPAL");
+        titulo.setFont(new Font("Arial", Font.BOLD, 30));
+        titulo.setForeground(Color.WHITE);
+        titulo.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        JButton eficiencia = crearBoton("EFICIENCIA ALGORÍTMICA");
+        JButton complejidad = crearBoton("ANÁLISIS DE COMPLEJIDAD");
+        JButton clases = crearBoton("P, NP, NP-HARD, NP-COMPLETE");
+        JButton grafos = crearBoton("GRAFOS");
+        JButton regresar = crearBoton("VOLVER A LA PORTADA");
+
+        eficiencia.addActionListener(e ->
+            mostrarMensaje("Eficiencia Algorítmica"));
+
+        complejidad.addActionListener(e ->
+            mostrarMensaje("Análisis de Complejidad"));
+
+        clases.addActionListener(e ->
+            mostrarMensaje("P, NP, NP-HARD, NP-COMPLETE"));
+
+        grafos.addActionListener(e ->
+            new MenuGrafos().setVisible(true));
+
+        regresar.addActionListener(e -> {
+            new Principal().setVisible(true);
+            dispose();
+        });
+
+        panel.add(Box.createVerticalStrut(40));
+        panel.add(titulo);
+        panel.add(Box.createVerticalStrut(45));
+        panel.add(eficiencia);
+        panel.add(Box.createVerticalStrut(20));
+        panel.add(complejidad);
+        panel.add(Box.createVerticalStrut(20));
+        panel.add(clases);
+        panel.add(Box.createVerticalStrut(20));
+        panel.add(grafos);
+        panel.add(Box.createVerticalStrut(35));
+        panel.add(regresar);
+
+        add(panel);
+    }
+
+    private JButton crearBoton(String texto) {
+        JButton boton = new JButton(texto);
+        boton.setFont(new Font("Arial", Font.BOLD, 16));
+        boton.setBackground(new Color(30, 130, 220));
+        boton.setForeground(Color.WHITE);
+        boton.setFocusPainted(false);
+        boton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        boton.setMaximumSize(new Dimension(380, 45));
+
+        return boton;
+    }
+
+    private void mostrarMensaje(String apartado) {
+        JOptionPane.showMessageDialog(this,
+            "El apartado " + apartado + " será implementado próximamente.");
+    }
+}
+
